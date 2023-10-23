@@ -4,13 +4,13 @@ import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@re
 import { ServerStyleContext, ClientStyleContext } from './context';
 import { withEmotionCache } from '@emotion/react';
 import { useContext, useEffect } from 'react';
-import { ChakraProvider } from '@chakra-ui/react';
-
-// root.tsx
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: 'stylesheet', href: cssBundleHref }] : []),
 ];
+
+const theme = extendTheme({ fonts: { body: "'Rancho', cursive" } });
 
 interface DocumentProps {
   children: React.ReactNode;
@@ -40,6 +40,12 @@ const Document = withEmotionCache(({ children }: DocumentProps, emotionCache) =>
       <head>
         <meta charSet='utf-8' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <link rel='preconnect' href='https://fonts.googleapis.com' />
+        <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='anonymous' />
+        <link
+          href='https://fonts.googleapis.com/css2?family=Rancho&display=swap'
+          rel='stylesheet'
+        />
         <Meta />
         <Links />
         {serverStyleData?.map(({ key, ids, css }) => (
@@ -63,7 +69,7 @@ const Document = withEmotionCache(({ children }: DocumentProps, emotionCache) =>
 export default function App() {
   return (
     <Document>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         <Outlet />
       </ChakraProvider>
     </Document>

@@ -1,5 +1,5 @@
-import { Center, Heading } from '@chakra-ui/react';
 import type { MetaFunction } from '@remix-run/node';
+import Home from '~/components/Home';
 
 export const meta: MetaFunction = () => {
   return [
@@ -10,8 +10,8 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <Center>
-      <Heading>Hola mundo</Heading>
-    </Center>
+    <>
+      <Home />
+    </>
   );
 }
