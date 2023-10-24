@@ -1,13 +1,14 @@
 import { Box, Button, Flex, Icon, Show, Text } from '@chakra-ui/react';
 import { Link } from '@remix-run/react';
 import { FaFilePdf, FaGithub, FaLinkedin } from 'react-icons/fa';
-import Typewriter from './TypeWritter';
+import { Typewriter } from './TypeWritter';
 
-const Home = () => {
+export const Home = () => {
   return (
     <Box
       as='section'
       height='100vh'
+      position='relative'
       backgroundImage={`url("/img/home.webp")`}
       backgroundSize='cover'
       backgroundPosition='center'
@@ -110,5 +111,3 @@ const Home = () => {
     </Box>
   );
 };
-
-export default Home;

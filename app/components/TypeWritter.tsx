@@ -2,7 +2,7 @@ import type { TextProps } from '@chakra-ui/react';
 import { Text } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 
-const Typewriter = ({
+export const Typewriter = ({
   words,
   delay,
   infinite,
@@ -26,12 +26,10 @@ const Typewriter = ({
         setCurrentIndex((prevIndex) => prevIndex + 1);
       }, delay);
     } else if (currentWordIndex < words.length - 1) {
-      // Move to the next word in the array
       setCurrentIndex(0);
       setCurrentText('');
       setCurrentWordIndex((prevWordIndex) => prevWordIndex + 1);
     } else if (infinite) {
-      // Start from the beginning if infinite is set
       setCurrentIndex(0);
       setCurrentText('');
       setCurrentWordIndex(0);
@@ -46,5 +44,3 @@ const Typewriter = ({
     </Text>
   );
 };
-
-export default Typewriter;
