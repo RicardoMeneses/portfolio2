@@ -15,7 +15,7 @@ export const MenuLanguage: React.FC<MenuLanguageProps> = ({ children, language, 
       menuButton={
         <MenuButton>
           <Flex alignItems='center' gap={1} textColor={'white'}>
-            <Text color='white' fontSize={'26px'}>
+            <Text color='white' fontSize={'30px'}>
               {language}
             </Text>
             <FaChevronDown style={{ fontSize: '16px' }} />

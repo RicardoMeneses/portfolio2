@@ -1,20 +1,59 @@
-import { Box, Container, Heading, Text, useDisclosure } from '@chakra-ui/react';
+import { Box, Container, HStack, Heading, IconButton, Text, useDisclosure } from '@chakra-ui/react';
 import { MenuDrawer } from './MenuDrawer';
 import { MenuLanguage } from './MenuLanguage';
 import { MenuItem as MenuLanguageItem } from '@szhsin/react-menu';
+import { BiSolidSun } from 'react-icons/bi';
+import { useEffect, useState } from 'react';
 
 export const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isScroll, setIsScroll] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY >= 100) {
+      setIsScroll(true);
+    } else {
+      setIsScroll(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
-      <Box as='header' position='fixed' w={'100%'} zIndex={10} top={0}>
+      <Box
+        as='header'
+        position='fixed'
+        w={'100%'}
+        zIndex={10}
+        top={0}
+        transition='all 0.2s ease-in'
+        bg={isScroll ? 'blackAlpha.700' : ''}
+      >
         <Container maxW='6xl' display='flex' justifyContent='space-between' p={5} color='white'>
           <Heading fontFamily='Rancho, cursive'>RM</Heading>
-          <MenuLanguage language='es' navbar={false}>
-            <MenuLanguageItem>Español</MenuLanguageItem>
-            <MenuLanguageItem>English</MenuLanguageItem>
-          </MenuLanguage>
+          <HStack>
+            <MenuLanguage language='es' navbar={false}>
+              <MenuLanguageItem>
+                <Text fontSize='24px'>Español</Text>
+              </MenuLanguageItem>
+              <MenuLanguageItem>
+                <Text fontSize='24px'>Inglés</Text>
+              </MenuLanguageItem>
+            </MenuLanguage>
+            <IconButton
+              aria-label='Toggle dark mode'
+              icon={<BiSolidSun />}
+              variant='ghost'
+              colorScheme='whiteAlpha'
+              color='white'
+              fontSize='26px'
+            />
+          </HStack>
           <Box
             height='30px'
             width='40px'
